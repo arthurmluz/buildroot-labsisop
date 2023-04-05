@@ -12,7 +12,7 @@ chmod +x $BASE_DIR/target/etc/init.d/S41network-config
 
 mkdir $BASE_DIR/target/home
 
-cp $BASE_DIR/../server.py $BASE_DIR/target/home
-cp $BASE_DIR/../script.sh $BASE_DIR/target/home
+cp $BASE_DIR/../server/server.py $BASE_DIR/target/home
+cp $BASE_DIR/../server/script.sh $BASE_DIR/target/home
 
 chmod u+x $BASE_DIR/target/home/script.sh
