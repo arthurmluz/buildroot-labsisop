@@ -14,5 +14,6 @@ mkdir $BASE_DIR/target/home
 
 cp $BASE_DIR/../server/server.py $BASE_DIR/target/home
 cp $BASE_DIR/../server/script.sh $BASE_DIR/target/home
+cp $BASE_DIR/../server/cpustat.py $BASE_DIR/target/home
 
 chmod u+x $BASE_DIR/target/home/script.sh

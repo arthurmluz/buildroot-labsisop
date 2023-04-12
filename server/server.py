@@ -1,5 +1,6 @@
 # Python 3 server example
 from http.server import BaseHTTPRequestHandler, HTTPServer
+from cpustat import GetCpuLoad
 import subprocess
 
 hostName = "192.168.1.10"
@@ -11,6 +12,7 @@ class MyServer(BaseHTTPRequestHandler):
 
         result = subprocess.run(['./script.sh'], stdout=subprocess.PIPE)
         result = str(result.stdout).replace('\\n', '\n').replace('\\t', '')[2:-2]#.split('\n')  
+        x      = GetCpuLoad()
 
         self.send_response(200)
         self.send_header("Content-type", "text/html")
@@ -19,6 +21,8 @@ class MyServer(BaseHTTPRequestHandler):
 
         self.wfile.write(bytes("<body>\n", "utf-8"))
         self.wfile.write(bytes("<p></p>\n", "utf-8"))
+
+        self.wfile.write(bytes(f"<br>  {x.getcpuload()}  </br>\n", "utf-8"))
         for line in result.split('\n'):
             self.wfile.write(bytes(f"<br>  {line}  </br>\n", "utf-8"))
         self.wfile.write(bytes("<p></p>\n", "utf-8"))
