@@ -10,20 +10,26 @@ sed -i "s/<IP-DO-HOST>/$ip/g" $BASE_DIR/../custom-scripts/S41network-config-copy
 cp $BASE_DIR/../custom-scripts/S41network-config-copy $BASE_DIR/target/etc/init.d/S41network-config
 chmod +x $BASE_DIR/target/etc/init.d/S41network-config
 
-mkdir $BASE_DIR/target/home
+# mkdir $BASE_DIR/target/home
 
-cp $BASE_DIR/../server/server.py $BASE_DIR/target/home
-cp $BASE_DIR/../server/script.sh $BASE_DIR/target/home
-cp $BASE_DIR/../server/cpustat.py $BASE_DIR/target/home
+# cp $BASE_DIR/../server/server.py $BASE_DIR/target/home
+# cp $BASE_DIR/../server/script.sh $BASE_DIR/target/home
+# cp $BASE_DIR/../server/cpustat.py $BASE_DIR/target/home
 
-chmod u+x $BASE_DIR/target/home/script.sh
+# chmod u+x $BASE_DIR/target/home/script.sh
 
 #Compile the syscall_test.c
 BUILDROOT_DIR=$BASE_DIR/..
 COMPILER=$BUILDROOT_DIR/output/host/bin/i686-buildroot-linux-uclibc-gcc
 $COMPILER -o $BUILDROOT_DIR/output/target/bin/syscall_test $BUILDROOT_DIR/custom-scripts/syscall_test.c
 $COMPILER -o $BUILDROOT_DIR/output/target/bin/syscall_sleeping $BUILDROOT_DIR/custom-scripts/syscall_sleeping.c
+# compile the disk thing
+#$COMPILER -o $BUILDROOT_DIR/output/target/usr/bin/hello_disk $BUILDROOT_DIR/disk-test/hello_disk.c
 
-make -C $BASE_DIR/../modules/simple_driver/
 
-make -C $BASE_DIR/../disk_test/
+#make -C $BASE_DIR/../modules/simple_driver/
+
+#make -C $BASE_DIR/../disk-test/
+
+# modprobe sstf_iosched
+# echo sstf > /sys/block/sdb/queue/scheduler
